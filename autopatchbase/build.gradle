@@ -1,4 +1,17 @@
 apply plugin: 'java'
-apply from: '../gradle_mvn_push.gradle'
+apply plugin: 'maven'
+
+//apply from: '../gradle_mvn_push.gradle'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://C://Users/m1505/AndroidProjects/.m2/repository/")
+            pom.version = "0.5.0"
+            pom.artifactId = "autopatchbase-local"
+            pom.groupId = "com.meituan.robust"
+        }
+    }
+}

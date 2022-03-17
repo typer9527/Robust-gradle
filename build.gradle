@@ -2,7 +2,8 @@
 
 buildscript {
     repositories {
-        // mavenLocal()
+        mavenLocal()
+        maven { url "https://mvnrepository.com/" }
         jcenter()
         google()
     }
@@ -13,7 +14,7 @@ buildscript {
         classpath 'com.meituan.robust:gradle-plugin:0.4.96'
         classpath 'com.meituan.robust:auto-patch-plugin:0.4.96'
         classpath 'me.tatarka:gradle-retrolambda:3.2.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
     }
@@ -24,7 +25,8 @@ configurations.all {
 }
 allprojects {
     repositories {
-        // mavenLocal()
+        mavenLocal()
+        maven { url "https://mvnrepository.com/" }
         maven {
             url "http://depot.sankuai.com/nexus/content/groups/public/"
         }
