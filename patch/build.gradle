@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
 project.archivesBaseName = 'robust'
 android {
     compileSdkVersion 24
@@ -31,7 +33,18 @@ configurations.all {
 }
 dependencies {
 //    compile 'com.meituan.robust:autopatchbase:' + VERSION_NAME
-    compile project(':autopatchbase')
+    compile 'com.meituan.robust:autopatchbase-local:0.5.0'
 }
 
-apply from: '../gradle_mvn_push.gradle'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://C://Users/m1505/AndroidProjects/.m2/repository/")
+            pom.version = "0.5.0"
+            pom.artifactId = "patch-local"
+            pom.groupId = "com.meituan.robust"
+        }
+    }
+}
+
+//apply from: '../gradle_mvn_push.gradle'
