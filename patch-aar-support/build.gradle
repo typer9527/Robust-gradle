@@ -1,0 +1,101 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven'
+//apply plugin: com.feelschaotic.upload.UploadPatchPlugin
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply from: rootProject.file('gradle/gradle_mvn_push.gradle')
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        publishNonDefault false
+        debug {
+            // 可能测试环境和正式环境分离 到时候再扩展吧
+            buildConfigField "String", "HOTFIX_SERVER_URL", "\"http://39.97.174.165:6493/patch/add/\""
+            buildConfigField "String", "HOTFIX_SERVER_URL_GET", "\"http://39.97.174.165:6493/patch/list/\""
+            buildConfigField "String", "REST_API_KEY", "\"02ab887dd4c57015d8e346b5a728c569\""
+            buildConfigField "String", "BMOB_APPLICATION_ID", "\"960a7aa0e24065f4804242fb1e64a7f3\""
+            buildConfigField "String", "ACCESS_ID", "\"LTAI4Fx9ecT1eH86xzRKt2Yc\""
+            buildConfigField "String", "BUCK_NAME", "\"sdkhotfix-app\""
+            buildConfigField "String", "SECRET_KEY", "\"JtMMOLEtwxTZe31soVgKGpVbwovUP8\""
+            buildConfigField "String", "END_POINT", "\"https://oss-cn-shenzhen.aliyuncs.com\""
+        }
+        release {
+            buildConfigField "String", "HOTFIX_SERVER_URL", "\"http://39.97.174.165:6493/patch/add/\""
+            buildConfigField "String", "HOTFIX_SERVER_URL_GET", "\"http://39.97.174.165:6493/patch/list/\""
+            buildConfigField "String", "REST_API_KEY", "\"02ab887dd4c57015d8e346b5a728c569\""
+            buildConfigField "String", "BMOB_APPLICATION_ID", "\"960a7aa0e24065f4804242fb1e64a7f3\""
+            buildConfigField "String", "ACCESS_ID", "\"LTAI4Fx9ecT1eH86xzRKt2Yc\""
+            buildConfigField "String", "BUCK_NAME", "\"sdkhotfix-app\""
+            buildConfigField "String", "SECRET_KEY", "\"JtMMOLEtwxTZe31soVgKGpVbwovUP8\""
+            buildConfigField "String", "END_POINT", "\"https://oss-cn-shenzhen.aliyuncs.com\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://C://Users/m1505/AndroidProjects/.m2/repository/")
+            pom.version = "0.5.0"
+            pom.packaging = "aar"
+            pom.artifactId = "patch-aar-support"
+            pom.groupId = "com.meituan.robust"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+
+    implementation 'com.tencent:mmkv:1.0.10'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'com.alibaba:fastjson:1.2.46'
+    implementation 'com.squareup.okhttp3:okhttp:3.4.0'
+    implementation 'com.squareup.okio:okio:1.12.0'
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.9.2'
+    implementation 'com.feelschaotic.sdk:crypto:1.0'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.2"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.liulishuo.filedownloader:library:1.7.7'
+
+    api 'com.meituan.robust:patch-local:0.5.0'
+}
+repositories {
+    mavenCentral()
+}

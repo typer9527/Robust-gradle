@@ -1,5 +1,5 @@
 //include ':app'
-include ':autopatchbase'
+include ':autopatchbase', ':patch-aar-support'
 include ':gradle-plugin'
 include ':patch'
 include ':auto-patch-plugin'
