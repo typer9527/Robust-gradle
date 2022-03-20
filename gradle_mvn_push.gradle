@@ -1,7 +1,7 @@
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-group = GROUP
-version = VERSION_NAME
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
+//group = GROUP
+//version = VERSION_NAME
 
 
 def getPropertyFromLocalProperties(key) {
