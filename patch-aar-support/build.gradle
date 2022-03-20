@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
-
-group = GROUP
-version = VERSION_NAME
+//apply plugin: 'com.github.dcendents.android-maven'
+//
+//group = GROUP
+//version = VERSION_NAME
 
 //apply plugin: com.feelschaotic.upload.UploadPatchPlugin
 //apply from: rootProject.file('gradle/gradle_mvn_push.gradle')
